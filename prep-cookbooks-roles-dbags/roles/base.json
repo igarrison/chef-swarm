@@ -1,0 +1,47 @@
+{
+  "name": "base",
+  "default_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[apache2@3.1.0]",
+    "recipe[httpd@0.2.18]",
+    "recipe[nginx@2.4.2]",
+    "recipe[mysql@6.0.24]",
+    "recipe[apt@2.7.0]",
+    "recipe[brightbox-ruby@1.2.1]",
+    "recipe[build-essential@2.2.3]",
+    "recipe[dynect@1.0.9]",
+    "recipe[openssh@1.3.4]",
+    "recipe[postfix@3.1.8]",
+    "recipe[rsyslog@1.10.2]",
+    "recipe[xml@1.2.4]",
+    "recipe[partial_search@1.0.8]",
+    "recipe[perl@1.2.4]",
+    "recipe[s3cfg@0.1.0]",
+    "recipe[ntp@1.8.6]",
+    "recipe[runit@1.7.2]",
+    "recipe[users@1.8.2]",
+    "recipe[sudo@2.7.1]",
+    "recipe[chef-client@4.3.0]",
+    "recipe[java@1.31.0]",
+    "recipe[windows@1.37.0]"
+  ],
+  "description": "Common Role For Loadtesting Fake Orgs",
+  "env_run_lists": {
+  },
+  "chef_type": "role",
+  "override_attributes": {
+    "dynect": {
+      "ec2": {
+        "type": "loadtest"
+      }
+    },
+    "dns": {
+      "type": "loadtest"
+    },
+    "network": {
+      "source": "static"
+    }
+  }
+}
