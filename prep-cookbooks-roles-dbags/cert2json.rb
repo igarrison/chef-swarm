@@ -11,12 +11,12 @@ def process_pem(filename)
   output
 end
 
-for i in 2..11
+for i in 2..120
   # pad with leading 0's
-  n = "%02d" % i
+  n = "%03d" % i
 
   content = {
-    :id => "ssl-#{n}",
+    :id => "item#{i}",
     :server => {
       :key => process_pem("certs/#{n}-key.pem"),
       :cert => process_pem("certs/#{n}-cert.pem"),

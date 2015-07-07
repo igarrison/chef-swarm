@@ -9,7 +9,7 @@ berks install
 berks
 berks upload
 knife role from file roles/base.json
-knife data bag create yeahtoast
+knife data bag create test
 
 # gen certs
 rm -fr certs json ca/serial ca/index.txt
@@ -20,7 +20,7 @@ cd ca
 openssl req -x509 -config openssl.cnf -newkey rsa:2048 -days 1825 -out cacert.pem -outform PEM -subj /CN=ChefCA/ -nodes
 openssl x509 -in cacert.pem -out cacert.cer -outform DER
 cd ../
-for i in {02..11}; do
+for i in {02..120}; do
   cd certs
   openssl genrsa -out $i-key.pem 2048
   openssl req -new -key $i-key.pem -out $i-req.pem -outform PEM -subj /CN=chef/O=certs/ -nodes
@@ -32,4 +32,4 @@ done
 
 # upload the data bags
 cd json
-for i in `ls *.json` ; do knife data bag from file yeahtoast $i ; done
+for i in `ls *.json` ; do knife data bag from file test $i ; done
